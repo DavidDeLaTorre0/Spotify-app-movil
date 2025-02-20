@@ -4,13 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.aristi_firebase.presentation.home.HomeScreen
 import com.example.aristi_firebase.presentation.initial.InitialScreen
 import com.example.aristi_firebase.presentation.login.LoginScreen
 import com.example.aristi_firebase.presentation.signup.SignupScreen
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
-fun NavigationWrapper(navHostController: NavHostController, auth: FirebaseAuth) {
+fun NavigationWrapper(
+    navHostController: NavHostController,
+    auth: FirebaseAuth,
+    db: FirebaseFirestore
+) {
 
     NavHost(navController = navHostController, startDestination ="initial"){
         composable ("initial"){
@@ -24,6 +30,9 @@ fun NavigationWrapper(navHostController: NavHostController, auth: FirebaseAuth) 
         }
         composable ("signUp"){
             SignupScreen(auth)
+        }
+        composable("home") {
+            HomeScreen(db)
         }
     }
 }

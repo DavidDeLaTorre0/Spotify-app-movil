@@ -91,10 +91,13 @@ fun LoginScreen(auth: FirebaseAuth) {
         )
         Spacer(Modifier.height(48.dp))
         Button(onClick = {
-            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task ->
+            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
+                task ->
+
                 if(task.isSuccessful){
                     //Navegar
                     Log.i("aris","LOGIN OK")
+
                 }else{
                     //Error
                     Log.i("aris", "LOGIN KO" )

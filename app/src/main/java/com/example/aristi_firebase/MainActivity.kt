@@ -15,6 +15,8 @@ import com.example.aristi_firebase.ui.theme.AristifirebaseTheme
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class MainActivity : ComponentActivity() {
 
@@ -22,10 +24,12 @@ class MainActivity : ComponentActivity() {
 
     //Creamos aqui las variables de auth, por que noestamos usando MVVM, si no seria en la capa de data, en el repositorio
     private lateinit var auth : FirebaseAuth
+    private lateinit var db:FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+        db = Firebase.firestore
         enableEdgeToEdge()
         setContent {
             navHostController = rememberNavController()
@@ -35,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavigationWrapper(navHostController,auth)
+                    NavigationWrapper(navHostController,auth,db)
                 }
             }
         }
@@ -50,6 +54,8 @@ class MainActivity : ComponentActivity() {
             //Si tenemos usuario reistrado, inicializamos home screen
             //Esto tambien te guarda la sesion, est lo gestiona todo firebase
             Log.i("aris", "Estoy logado")
+            //deslogeamos
+            auth.signOut()
         }
     }
 }
