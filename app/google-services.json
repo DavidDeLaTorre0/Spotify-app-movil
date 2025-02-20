@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "436397951419",
+    "project_id": "aristidevfirebase",
+    "storage_bucket": "aristidevfirebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436397951419:android:a40ea23926ea4d6d401c9e",
+        "android_client_info": {
+          "package_name": "com.example.aristi_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_TxQ5KXdgIzp80uGPxEyKaki5oY0EOLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
