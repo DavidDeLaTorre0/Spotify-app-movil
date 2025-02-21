@@ -40,7 +40,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 @Composable
-fun LoginScreen(auth: FirebaseAuth) {
+fun LoginScreen(auth: FirebaseAuth, navigateToHome:() -> Unit = {}) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -97,6 +97,7 @@ fun LoginScreen(auth: FirebaseAuth) {
                 if(task.isSuccessful){
                     //Navegar
                     Log.i("aris","LOGIN OK")
+                    navigateToHome()
 
                 }else{
                     //Error

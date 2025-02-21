@@ -87,7 +87,8 @@ fun SignupScreen(auth: FirebaseAuth){
         Button(onClick = {
             //tambien se puede hace que el usuario con el ROL: Anonimo pueda acceder, se haria de la siguiente manera
             //auth.signInAnonymously()
-            auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener{
+            auth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener{
                 task ->
                 if(task.isSuccessful){
                     //Registrado

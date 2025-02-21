@@ -56,6 +56,8 @@ class MainActivity : ComponentActivity() {
             Log.i("aris", "Estoy logado")
             //deslogeamos
             auth.signOut()
+
+            Log.i("aris", "Estoy deslogado")
         }
     }
 }
