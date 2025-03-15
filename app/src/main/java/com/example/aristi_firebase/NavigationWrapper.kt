@@ -35,7 +35,7 @@ fun NavigationWrapper(
             SignupScreen(auth)
         }
         composable("home") {
-            HomeScreen(db)
+            HomeScreen()
         }
     }
 }
