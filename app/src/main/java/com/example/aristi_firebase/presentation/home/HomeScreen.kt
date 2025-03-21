@@ -1,43 +1,28 @@
 package com.example.aristi_firebase.presentation.home
 
 import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aristi_firebase.R
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun HomeScreen() {
     Scaffold(
-        topBar = { TopBar() }, // 🔼 Top Bar
-        bottomBar = { BottomBar() }, // 🔽 Bottom Bar
-        containerColor = Color(0xFFBDBDBD), // 🔴 Fondo gris
+        topBar = { TopBar() },
+        bottomBar = { BottomBar() },
+        containerColor = Color(0xFFBDBDBD),
         content = { padding ->
             Column(
                 modifier = Modifier
@@ -51,48 +36,44 @@ fun HomeScreen() {
     )
 }
 
-// 🔼 **Top Bar**
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar() {
     TopAppBar(
         title = {
             Row(
-                modifier = Modifier.fillMaxWidth(), // 🔴 Usa todo el ancho
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween // 🔴 Espacia los elementos
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                // 🔹 Ícono de Perfil
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(
                         imageVector = Icons.Default.AccountCircle,
-                        contentDescription = "Perfil",
+                        contentDescription = stringResource(id = R.string.profile_home),
                         tint = Color.White,
                         modifier = Modifier.size(40.dp)
                     )
                     Text(
-                        text = "Perfil",
+                        text = stringResource(id = R.string.profile_home),
                         color = Color.Gray,
                         fontSize = 12.sp
                     )
                 }
 
-                // 🔹 Botón "Inicio" centrado
                 TextButton(
                     onClick = { /* Acción del filtro */ },
                     colors = ButtonDefaults.textButtonColors(contentColor = Color.Green)
                 ) {
-                    Text(text = "Inicio", fontSize = 16.sp)
+                    Text(text = stringResource(id = R.string.home_home_screen), fontSize = 16.sp)
                 }
 
-                Spacer(modifier = Modifier.width(48.dp)) // 🔴 Para equilibrar el diseño
+                Spacer(modifier = Modifier.width(48.dp))
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
     )
 }
 
-// 🔽 **Bottom Navigation Bar**
 @Composable
 fun BottomBar() {
     NavigationBar(
@@ -102,11 +83,11 @@ fun BottomBar() {
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
-                    contentDescription = "Inicio",
+                    contentDescription = stringResource(id = R.string.home_home_screen),
                     tint = Color.White
                 )
             },
-            label = { Text("Inicio", color = Color.White, fontSize = 12.sp) },
+            label = { Text(stringResource(id = R.string.home_home_screen), color = Color.White, fontSize = 12.sp) },
             selected = false,
             onClick = { /* Acción al hacer clic */ }
         )
@@ -114,11 +95,11 @@ fun BottomBar() {
             icon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Buscar",
+                    contentDescription = stringResource(id = R.string.search_home),
                     tint = Color.White
                 )
             },
-            label = { Text("Buscar", color = Color.White, fontSize = 12.sp) },
+            label = { Text(stringResource(id = R.string.search_home), color = Color.White, fontSize = 12.sp) },
             selected = false,
             onClick = { /* Acción al hacer clic */ }
         )
@@ -131,11 +112,9 @@ data class Artist(
 )
 
 fun createArtist(db: FirebaseFirestore) {
-
     val random = (1..10000).random()
     val artist = Artist(name = "Random $random", numberOfSongs = random)
 
-    //Como en MONGO, Firebase es una bd no relacional entonces accedemos a la colecion que hemops creado
     db.collection("artist")
         .add(artist)
         //Si todo ha salido bien entra en este add
