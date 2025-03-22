@@ -1,24 +1,36 @@
 package com.example.aristi_firebase.presentation.home
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.rememberAsyncImagePainter
 import com.example.aristi_firebase.R
+import com.example.aristi_firebase.viewmodel.SongsViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: SongsViewModel = viewModel()) {
+    val songs by viewModel.songs.observeAsState(emptyList())
+    val isLoading by viewModel.isLoading.observeAsState(true)
+    val error by viewModel.error.observeAsState()
     Scaffold(
         topBar = { TopBar() },
         bottomBar = { BottomBar() },
@@ -30,7 +42,24 @@ fun HomeScreen() {
                     .padding(padding)
                     .padding(16.dp)
             ) {
-                // Contenido de la pantalla
+                when {
+                    isLoading -> {
+                        CircularProgressIndicator()
+                    }
+                    error != null -> {
+                        Text(text = "Error: $error", color = MaterialTheme.colorScheme.error)
+                    }
+                    else -> {
+                        LazyColumn {
+                            items(songs) { song ->
+                                SongItem(
+                                    title = song.info.title,
+                                    thumbnailUrl = song.info.thumbnail
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     )
@@ -105,29 +134,26 @@ fun BottomBar() {
         )
     }
 }
-
-data class Artist(
-    val name: String,
-    val numberOfSongs: Int
-)
-
-fun createArtist(db: FirebaseFirestore) {
-    val random = (1..10000).random()
-    val artist = Artist(name = "Random $random", numberOfSongs = random)
-
-    db.collection("artist")
-        .add(artist)
-        //Si todo ha salido bien entra en este add
-        .addOnSuccessListener {
-            Log.i("David", "Success")
+@Composable
+fun SongItem(title: String, thumbnailUrl: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val image = rememberAsyncImagePainter(thumbnailUrl)
+            Image(
+                painter = image,
+                contentDescription = "Song Thumbnail",
+                modifier = Modifier.size(60.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(title, style = MaterialTheme.typography.titleLarge)
         }
-        //Si ha habido algun error en el proceso de buscar la coleccion entra en este
-        .addOnFailureListener {
-            Log.i("David", "Failure")
-        }
-
-        //Si se ha terminado, entra en este
-        .addOnCompleteListener {
-            Log.i("David", "Complete")
-        }
+    }
 }
