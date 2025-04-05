@@ -1,4 +1,4 @@
-package com.example.aristi_firebase.presentation.initial
+package com.example.hooksounds_tfg.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,12 +29,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aristi_firebase.R
-import com.example.aristi_firebase.ui.theme.BackgroundButton
-import com.example.aristi_firebase.ui.theme.Black
-import com.example.aristi_firebase.ui.theme.Gray
-import com.example.aristi_firebase.ui.theme.Green
-import com.example.aristi_firebase.ui.theme.ShapeButton
+import com.example.hooksounds_tfg.R
+import com.example.hooksounds_tfg.ui.theme.BackgroundButton
+import com.example.hooksounds_tfg.ui.theme.Black
+import com.example.hooksounds_tfg.ui.theme.Gray
+import com.example.hooksounds_tfg.ui.theme.Green
+import com.example.hooksounds_tfg.ui.theme.ShapeButton
 
 @Preview
 @Composable

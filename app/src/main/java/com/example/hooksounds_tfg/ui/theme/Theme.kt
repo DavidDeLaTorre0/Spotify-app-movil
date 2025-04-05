@@ -1,4 +1,4 @@
-package com.example.aristi_firebase.ui.theme
+package com.example.hooksounds_tfg.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun AristifirebaseTheme(
+fun Hooksounds_tfgTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

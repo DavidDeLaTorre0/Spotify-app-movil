@@ -1,13 +1,13 @@
-package com.example.aristi_firebase
+package com.example.hooksounds_tfg.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.aristi_firebase.presentation.home.HomeScreen
-import com.example.aristi_firebase.presentation.initial.InitialScreen
-import com.example.aristi_firebase.presentation.login.LoginScreen
-import com.example.aristi_firebase.presentation.signup.SignupScreen
+import com.example.hooksounds_tfg.views.HomeScreen
+import com.example.hooksounds_tfg.views.InitialScreen
+import com.example.hooksounds_tfg.views.LoginScreen
+import com.example.hooksounds_tfg.views.SignupScreen
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -35,7 +35,7 @@ fun NavigationWrapper(
             SignupScreen(auth)
         }
         composable("home") {
-            HomeScreen(db)
+            HomeScreen()
         }
     }
 }

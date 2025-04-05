@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Aristi-firebase"
+rootProject.name = "Hooksounds_tfg"
 include(":app")
+ 

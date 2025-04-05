@@ -1,4 +1,4 @@
-package com.example.aristi_firebase.ui.theme
+package com.example.hooksounds_tfg.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

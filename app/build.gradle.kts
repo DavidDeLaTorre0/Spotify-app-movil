@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.aristi_firebase"
+    namespace = "com.example.hooksounds_tfg"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.aristi_firebase"
+        applicationId = "com.example.hooksounds_tfg"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -43,12 +43,20 @@ android {
 
 dependencies {
 
+    //Librerias añadidas
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.auth)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.firebase.firestore)
-
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(kotlin("script-runtime"))
+    implementation(libs.coil.compose)
+    implementation(libs.material3)
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -57,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

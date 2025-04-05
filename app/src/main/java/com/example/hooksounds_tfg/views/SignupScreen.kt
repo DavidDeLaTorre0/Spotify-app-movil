@@ -1,9 +1,7 @@
-package com.example.aristi_firebase.presentation.login
+package com.example.hooksounds_tfg.views
 
 import android.util.Log
-import android.widget.Space
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,7 +14,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,19 +25,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aristi_firebase.R
-import com.example.aristi_firebase.presentation.initial.InitialScreen
-import com.example.aristi_firebase.ui.theme.Black
-import com.example.aristi_firebase.ui.theme.SelectedField
-import com.example.aristi_firebase.ui.theme.UnSelectedField
+import com.example.hooksounds_tfg.R
+import com.example.hooksounds_tfg.ui.theme.Black
+import com.example.hooksounds_tfg.ui.theme.SelectedField
+import com.example.hooksounds_tfg.ui.theme.UnSelectedField
 import com.google.firebase.auth.FirebaseAuth
 
-
 @Composable
-fun LoginScreen(auth: FirebaseAuth, navigateToHome:() -> Unit = {}) {
+fun SignupScreen(auth: FirebaseAuth){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -91,21 +85,21 @@ fun LoginScreen(auth: FirebaseAuth, navigateToHome:() -> Unit = {}) {
         )
         Spacer(Modifier.height(48.dp))
         Button(onClick = {
-            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
+            //tambien se puede hace que el usuario con el ROL: Anonimo pueda acceder, se haria de la siguiente manera
+            //auth.signInAnonymously()
+            auth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener{
                 task ->
-
                 if(task.isSuccessful){
-                    //Navegar
-                    Log.i("aris","LOGIN OK")
-                    navigateToHome()
-
-                }else{
+                    //Registrado
+                    Log.i("aris", "Registro OK")
+                }else {
                     //Error
-                    Log.i("aris", "LOGIN KO" )
+                    Log.i("aris", "Registro KO")
                 }
             }
         }) {
-            Text(text = "Login")
+            Text(text = "Sign Up")
         }
 
     }

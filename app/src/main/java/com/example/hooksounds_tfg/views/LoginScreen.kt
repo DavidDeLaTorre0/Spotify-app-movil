@@ -1,4 +1,4 @@
-package com.example.aristi_firebase.presentation.signup
+package com.example.hooksounds_tfg.views
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -27,14 +27,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aristi_firebase.R
-import com.example.aristi_firebase.ui.theme.Black
-import com.example.aristi_firebase.ui.theme.SelectedField
-import com.example.aristi_firebase.ui.theme.UnSelectedField
+import com.example.hooksounds_tfg.R
+import com.example.hooksounds_tfg.ui.theme.Black
+import com.example.hooksounds_tfg.ui.theme.SelectedField
+import com.example.hooksounds_tfg.ui.theme.UnSelectedField
 import com.google.firebase.auth.FirebaseAuth
 
+
 @Composable
-fun SignupScreen(auth: FirebaseAuth){
+fun LoginScreen(auth: FirebaseAuth, navigateToHome:() -> Unit = {}) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -85,21 +86,21 @@ fun SignupScreen(auth: FirebaseAuth){
         )
         Spacer(Modifier.height(48.dp))
         Button(onClick = {
-            //tambien se puede hace que el usuario con el ROL: Anonimo pueda acceder, se haria de la siguiente manera
-            //auth.signInAnonymously()
-            auth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener{
+            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
                 task ->
+
                 if(task.isSuccessful){
-                    //Registrado
-                    Log.i("aris", "Registro OK")
-                }else {
+                    //Navegar
+                    Log.i("aris","LOGIN OK")
+                    navigateToHome()
+
+                }else{
                     //Error
-                    Log.i("aris", "Registro KO")
+                    Log.i("aris", "LOGIN KO" )
                 }
             }
         }) {
-            Text(text = "Sign Up")
+            Text(text = "Login")
         }
 
     }

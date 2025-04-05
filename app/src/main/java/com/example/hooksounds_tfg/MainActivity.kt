@@ -1,4 +1,4 @@
-package com.example.aristi_firebase
+package com.example.hooksounds_tfg
 
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +10,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.aristi_firebase.ui.theme.AristifirebaseTheme
+import com.example.hooksounds_tfg.ui.theme.Hooksounds_tfgTheme
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import androidx.navigation.compose.rememberNavController
+import com.example.hooksounds_tfg.navigation.NavigationWrapper
 
 class MainActivity : ComponentActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
     //Creamos aqui las variables de auth, por que noestamos usando MVVM, si no seria en la capa de data, en el repositorio
     private lateinit var auth : FirebaseAuth
-    private lateinit var db:FirebaseFirestore
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             navHostController = rememberNavController()
-            AristifirebaseTheme {
+            Hooksounds_tfgTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

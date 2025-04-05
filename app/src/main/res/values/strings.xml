@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Aristi-firebase</string>
+    <string name="app_name">Hooksounds_tfg</string>
+    <string name="profile_home">Perfil</string>
+    <string name="home_home_screen">Inicio</string>
+    <string name="search_home">Buscar</string>
+    <string name="success_home">Success</string>
+    <string name="failure_home">Failure</string>
+    <string name="complete_home">Complete</string>
 </resources>

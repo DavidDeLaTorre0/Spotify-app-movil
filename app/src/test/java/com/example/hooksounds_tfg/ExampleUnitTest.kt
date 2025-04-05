@@ -1,4 +1,4 @@
-package com.example.aristi_firebase
+package com.example.hooksounds_tfg
 
 import org.junit.Test
 
