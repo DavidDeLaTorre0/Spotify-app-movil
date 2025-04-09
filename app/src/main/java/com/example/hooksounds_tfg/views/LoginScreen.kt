@@ -70,7 +70,7 @@ fun LoginScreen(auth: FirebaseAuth, navigateToHome:() -> Unit = {}) {
         )
         Spacer(Modifier.height(48.dp))
         Text(
-            text = "Password",
+            text = "Contraseña",
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 40.sp
